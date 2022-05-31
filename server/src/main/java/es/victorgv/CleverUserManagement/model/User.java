@@ -1,8 +1,14 @@
 package es.victorgv.CleverUserManagement.model;
 
+
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
+@Data @NoArgsConstructor
 @Table(name = "user_")
 public class User {
     @Id
