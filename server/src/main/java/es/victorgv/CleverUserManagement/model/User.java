@@ -18,4 +18,8 @@ public class User {
 
     @Column(length = 100, nullable = false)
     private String name;
+
+    @Column(length = 100, nullable = false)
+    private String userName;
+
 }
