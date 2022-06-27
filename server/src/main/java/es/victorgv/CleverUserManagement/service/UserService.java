@@ -1,5 +1,6 @@
 package es.victorgv.CleverUserManagement.service;
 
+import es.victorgv.CleverUserManagement.DTO.UserLoginDTO;
 import es.victorgv.CleverUserManagement.model.User;
 import es.victorgv.CleverUserManagement.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,13 @@ public class UserService {
 
             userRepository.save(userAdmin);
         }
+    }
+
+    public boolean validateUser(UserLoginDTO userLoginDTO) {
+        User user = userRepository.findByUserName(userLoginDTO.getUserName());
+
+        return (user !=null) && (userLoginDTO.getPassword().equals(user.getPassword()));
+
     }
 
 
