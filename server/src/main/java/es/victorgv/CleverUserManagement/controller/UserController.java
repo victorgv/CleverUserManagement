@@ -1,5 +1,6 @@
 package es.victorgv.CleverUserManagement.controller;
 
+import es.victorgv.CleverUserManagement.DTO.UserLoginDTO;
 import es.victorgv.CleverUserManagement.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,13 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody UserLoginDTO userLoginDTO) { // Endpoint para validación usr/pass
-
+        if (userService.validateUser(userLoginDTO)) {
+            userLoginDTO.setPassword("blablabla");
+            return new ResponseEntity<>(userLoginDTO, HttpStatus.OK);
+        } else {
+            userLoginDTO.setPassword("blablabla");
+            return new ResponseEntity<>(userLoginDTO, HttpStatus.UNAUTHORIZED);
+        }
 
     }
 
