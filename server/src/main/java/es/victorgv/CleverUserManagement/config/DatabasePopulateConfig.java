@@ -1,6 +1,6 @@
 package es.victorgv.CleverUserManagement.config;
 
-import es.victorgv.CleverUserManagement.service.ElementService;
+import es.victorgv.CleverUserManagement.service.ServiceService;
 import es.victorgv.CleverUserManagement.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -10,18 +10,18 @@ import javax.annotation.PostConstruct;
 @Configuration
 public class DatabasePopulateConfig {
     private UserService userService;
-    private ElementService elementService;
+    private ServiceService serviceService;
 
     @Autowired
-    public DatabasePopulateConfig(UserService userService, ElementService elementService) {
+    public DatabasePopulateConfig(UserService userService, ServiceService serviceService) {
         this.userService = userService;
-        this.elementService = elementService;
+        this.serviceService = serviceService;
     }
 
     @PostConstruct
     public void populate() {
         userService.doInitDatabasePopulate();
-        elementService.doInitDatabasePopulate();
+        serviceService.doInitDatabasePopulate();
 
     }
 

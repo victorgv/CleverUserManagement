@@ -6,20 +6,20 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-/** Cada elemento representará una aplicación, servicio, microservicio suscaptible de ser
+/** Cada elemento representará una aplicación con interface gráfica, servicio, microservicio susceptible de ser
  * administrado mediante asignación permisos usuario
  */
 @Entity
 @Setter @Getter @NoArgsConstructor
 @Table(uniqueConstraints =
-        {@UniqueConstraint(name = "element_code_uk", columnNames = { "code" }),
-         @UniqueConstraint(name = "element_name_uk", columnNames = { "name" })
+        {@UniqueConstraint(name = "service_code_uk", columnNames = { "code" }),
+         @UniqueConstraint(name = "service_name_uk", columnNames = { "name" })
         })
-public class Element {
+public class Service {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator= "element_id_generator")
-    @SequenceGenerator(name="element_id_generator", sequenceName = "element_seq")
-    private Long elementId;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator= "service_id_generator")
+    @SequenceGenerator(name="service_id_generator", sequenceName = "service_seq")
+    private Long serviceId;
 
     @Column(length = 20, nullable = false)
     private String code;
