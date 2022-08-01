@@ -6,7 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-/** Cada elemento representará una aplicación con interface gráfica, servicio, microservicio susceptible de ser
+/** Cada Sevicio (Service) representará una aplicación con interface gráfica, servicio, microservicio susceptible de ser
  * administrado mediante asignación permisos usuario
  */
 @Entity
