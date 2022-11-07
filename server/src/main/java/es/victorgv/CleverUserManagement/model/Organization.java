@@ -17,7 +17,7 @@ public class Organization {
             name = "UUID",
             strategy = "org.hibernate.id.UUIDGenerator"
     )
-    private UUID organizationUUID;
+    private UUID organizationUID;
 
     @Column(length = 100, nullable = false)
     private String name;
@@ -32,14 +32,14 @@ public class Organization {
 
         Organization that = (Organization) o;
 
-        if (!organizationUUID.equals(that.organizationUUID)) return false;
+        if (!organizationUID.equals(that.organizationUID)) return false;
         if (!name.equals(that.name)) return false;
         return description != null ? description.equals(that.description) : that.description == null;
     }
 
     @Override
     public int hashCode() {
-        int result = organizationUUID.hashCode();
+        int result = organizationUID.hashCode();
         result = 31 * result + name.hashCode();
         result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
