@@ -21,6 +21,8 @@ public class UserService {
             userAdmin.setName("Superuser");
             userAdmin.setUserName("SUPER");
             userAdmin.setPassword("super");
+            userAdmin.setUserNameType("STAFFNUMBER");
+            userAdmin.setValidationMethodType("PASSWORD");
 
             userRepository.save(userAdmin);
         }

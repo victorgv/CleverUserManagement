@@ -15,11 +15,6 @@ import java.util.UUID;
 @Setter @Getter @NoArgsConstructor
 @Table(name = "user_")
 public class User {
-    //@Id
-    //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator= "user_id_generator")
-    //@SequenceGenerator(name="user_id_generator", sequenceName = "user_seq")
-    //private Long userId;
-
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
@@ -31,8 +26,17 @@ public class User {
     @Column(length = 100, nullable = false)
     private String name;
 
+    @Column(length = 400, nullable = true)
+    private String comment;
+
     @Column(length = 100, nullable = false)
     private String userName;
+
+    @Column(length = 100, nullable = false)
+    private String userNameType; // StaffNumber, email, SITA adress, DNI, userCode
+
+    @Column(length = 100, nullable = false)
+    private String validationMethodType; // password, LDAP
 
     @Column(length = 250, nullable = false)
     private String password;
