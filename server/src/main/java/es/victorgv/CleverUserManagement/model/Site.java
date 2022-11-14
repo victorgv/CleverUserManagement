@@ -10,14 +10,14 @@ import java.util.UUID;
 
 @Entity
 @Setter @Getter @NoArgsConstructor
-public class Organization {
+public class Site {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
             name = "UUID",
             strategy = "org.hibernate.id.UUIDGenerator"
     )
-    private UUID organizationUID;
+    private UUID siteUID;
 
     @Column(length = 100, nullable = false)
     private String name;
@@ -30,16 +30,16 @@ public class Organization {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Organization that = (Organization) o;
+        Site that = (Site) o;
 
-        if (!organizationUID.equals(that.organizationUID)) return false;
+        if (!siteUID.equals(that.siteUID)) return false;
         if (!name.equals(that.name)) return false;
         return description != null ? description.equals(that.description) : that.description == null;
     }
 
     @Override
     public int hashCode() {
-        int result = organizationUID.hashCode();
+        int result = siteUID.hashCode();
         result = 31 * result + name.hashCode();
         result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
