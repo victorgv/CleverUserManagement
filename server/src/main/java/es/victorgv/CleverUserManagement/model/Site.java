@@ -19,6 +19,9 @@ public class Site {
     )
     private UUID siteUID;
 
+    @Column(length = 15, nullable = false)
+    private String siteCode;
+
     @Column(length = 100, nullable = false)
     private String name;
 
