@@ -6,6 +6,8 @@ import es.victorgv.CleverUserManagement.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.UUID;
+
 @Service
 @Transactional
 public class UserService {
@@ -15,7 +17,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public void doInitDatabasePopulate() {
+    public UUID doInitDatabasePopulate() {
         if (userRepository.findAll().isEmpty()) {
             User userAdmin = new User();
             userAdmin.setName("Superuser");
@@ -24,8 +26,11 @@ public class UserService {
             userAdmin.setUserNameType("STAFFNUMBER");
             userAdmin.setValidationMethodType("PASSWORD");
 
-            userRepository.save(userAdmin);
+            return userRepository.save(userAdmin).getUserUID();
+        } else {
+            return null;
         }
+
     }
 
     public boolean validateUser(UserLoginDTO userLoginDTO) {

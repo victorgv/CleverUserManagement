@@ -8,6 +8,7 @@ import org.hibernate.Hibernate;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -36,10 +37,16 @@ public class User {
     private String userNameType; // StaffNumber, email, SITA adress, DNI, userCode
 
     @Column(length = 100, nullable = false)
-    private String validationMethodType; // password, LDAP
+    private String validationMethodType; // password, LDAP, token
 
     @Column(length = 250, nullable = false)
     private String password;
+
+    @ManyToMany
+    @JoinTable( name = "user_site",
+            joinColumns = @JoinColumn(referencedColumnName = "userUID", name = "userUID"),
+            inverseJoinColumns = @JoinColumn(referencedColumnName = "siteUID", name = "siteUID"))
+    public List<Site> sites;
 
     @Override
     public boolean equals(Object o) {

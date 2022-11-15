@@ -4,6 +4,8 @@ import es.victorgv.CleverUserManagement.model.Site;
 import es.victorgv.CleverUserManagement.repository.SiteRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class SiteService {
     private final SiteRepository siteRepository;
@@ -12,7 +14,7 @@ public class SiteService {
         this.siteRepository = siteRepository;
     }
 
-    public void doInitDatabasePopulate() {
+    public UUID doInitDatabasePopulate() {
         if (siteRepository.findAll().isEmpty()) {
             // Creamos un SITE por defecto para administrar el sistema
             Site siteManagementAPP = new Site();
@@ -20,8 +22,11 @@ public class SiteService {
             siteManagementAPP.setName("MANAGEMENT SITE");
             siteManagementAPP.setDescription("SITE para administración del sistema");
 
-            siteRepository.save(siteManagementAPP);
+            return siteRepository.save(siteManagementAPP).getSiteUID();
+        } else {
+            return null;
         }
+
     }
 
 

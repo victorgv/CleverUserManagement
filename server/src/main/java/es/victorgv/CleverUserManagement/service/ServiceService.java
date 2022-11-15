@@ -4,6 +4,8 @@ import es.victorgv.CleverUserManagement.model.Service;
 import es.victorgv.CleverUserManagement.repository.ServiceRepository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.UUID;
+
 @org.springframework.stereotype.Service
 @Transactional
 public class ServiceService {
@@ -19,8 +21,6 @@ public class ServiceService {
             serviceUsrManagementAPP.setCode("USR");
             serviceUsrManagementAPP.setName("User Management APP");
             serviceUsrManagementAPP.setDescription("this application, used in order to administrate users who can manage other users");
-
-            serviceRepository.save(serviceUsrManagementAPP);
         }
     }
 }
