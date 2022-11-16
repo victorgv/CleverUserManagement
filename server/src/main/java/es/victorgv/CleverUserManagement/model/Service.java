@@ -3,8 +3,12 @@ package es.victorgv.CleverUserManagement.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 /** Cada Sevicio (Service) representará una aplicación con interface gráfica, servicio, microservicio susceptible de ser
  * administrado mediante asignación permisos usuario
@@ -17,9 +21,12 @@ import javax.persistence.*;
         })
 public class Service {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator= "service_id_generator")
-    @SequenceGenerator(name="service_id_generator", sequenceName = "service_seq")
-    private Long serviceId;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
+    private UUID serviceUID;
 
     @Column(length = 20, nullable = false)
     private String code;
@@ -29,5 +36,9 @@ public class Service {
 
     @Column(length = 500, nullable = true)
     private String description;
+
+    @OneToMany
+    @JoinColumn(name = "serviceUID")
+    private List<Permission> permissions = new ArrayList<Permission>();
 
 }
