@@ -31,7 +31,10 @@ public class Permission {
     @Setter @Getter @NoArgsConstructor
     public static class PermissionID implements Serializable {
         @ManyToOne
-        @JoinColumn(name = "serviceUID")
+        @JoinColumns({
+                @JoinColumn(name = "siteUID"),
+                @JoinColumn(name = "serviceUID")
+        })
         public Service service;
 
         @Column

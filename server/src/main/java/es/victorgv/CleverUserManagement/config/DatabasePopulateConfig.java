@@ -1,5 +1,6 @@
 package es.victorgv.CleverUserManagement.config;
 
+import es.victorgv.CleverUserManagement.model.Site;
 import es.victorgv.CleverUserManagement.service.ServiceService;
 import es.victorgv.CleverUserManagement.service.SiteService;
 import es.victorgv.CleverUserManagement.service.UserService;
@@ -28,11 +29,11 @@ public class DatabasePopulateConfig {
     @PostConstruct
     public void populate() {
         UUID userUid = userService.doInitDatabasePopulate();
-        UUID siteUID = siteService.doInitDatabasePopulate();
-        serviceService.doInitDatabasePopulate();
+        Site site= siteService.doInitDatabasePopulate();
+        serviceService.doInitDatabasePopulate(site);
 
-        if (userUid != null && siteUID != null) {
-            userSiteService.doInitDatabasePopulate(userUid, siteUID);
+        if (userUid != null && site != null) {
+            userSiteService.doInitDatabasePopulate(userUid, site.getSiteUID());
         }
 
 

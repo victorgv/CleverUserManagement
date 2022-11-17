@@ -14,7 +14,7 @@ public class SiteService {
         this.siteRepository = siteRepository;
     }
 
-    public UUID doInitDatabasePopulate() {
+    public Site doInitDatabasePopulate() {
         if (siteRepository.findAll().isEmpty()) {
             // Creamos un SITE por defecto para administrar el sistema
             Site siteManagementAPP = new Site();
@@ -22,7 +22,7 @@ public class SiteService {
             siteManagementAPP.setName("MANAGEMENT SITE");
             siteManagementAPP.setDescription("SITE para administración del sistema");
 
-            return siteRepository.save(siteManagementAPP).getSiteUID();
+            return siteRepository.save(siteManagementAPP);
         } else {
             return null;
         }
