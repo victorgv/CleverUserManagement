@@ -1,0 +1,40 @@
+<!-- Fichero de configuración de logback v.1
+  Info adicional:
+    https://logback.qos.ch/manual/configuration.html
+    https://stackify.com/logging-logback/
+    https://www.codingame.com/playgrounds/4497/configuring-logback-with-spring-boot
+-->
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+
+    <!-- Configuración fichero individual -->
+    <appender name="Grabar_Fichero" class="ch.qos.logback.core.FileAppender">
+        <file>logs/log.log</file>
+        <encoder>
+            <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Configuración fichero con rooling de forma que vaya generando múltiples según se cumplan las condiciones -->
+    <appender name="Graba_Rooling" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/log_rooling.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n </Pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/log_%d{dd-MM-yyyy}.log</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>100MB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+
+    <!-- Por ahora y para probar selecciono todos los tipos de LOGs -->
+    <root>
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="Grabar_Fichero" />
+        <appender-ref ref="Graba_Rooling" />
+    </root>
+
+</configuration>
